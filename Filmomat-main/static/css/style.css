@@ -1,0 +1,54 @@
+    /*Code by Noah Makowka*/
+    /*22.11.26 - Init Commit*/
+      
+    body {
+        font-family: Arial, Arial, Helvetica, sans-serif;
+        margin: 0;
+    }
+
+    #top {
+        text-align: center;
+    }
+
+    #logo {
+        color: white;
+        background-color: rgb(33, 4, 128);
+        display: inline-block;
+        font-size: 32px;
+        font-weight: bold;
+        padding: 8px;
+        margin-top: 16px;
+    }
+
+    #logo-name {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 16px;
+    }
+
+    #navigation a {
+        color: grey;
+        padding: 8px;
+    }
+
+    #navigation a:hover {
+        color: blue;
+    }
+
+   #image img {
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+   }
+
+   #main {
+    max-width: 800px;
+    margin: auto;
+    padding: 16px;
+   }
+
+   #footer {
+    text-align: center;
+    color: grey;
+    padding: 16px;
+   }

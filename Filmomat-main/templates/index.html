@@ -1,0 +1,148 @@
+<!--Code by Ricardo Bandeira & Noah Makowka-->
+<!--22.11.26 - Init Commit-->
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if layer == 2 and movieA|length != 0 and movieB|length != 0 %}
+        <meta http-equiv="refresh" content="1;url=/C#ROW_E" />
+        {% endif %}
+        <title>Filmomat</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    </head>
+    <body>
+        <div id="top">
+            <div id="logo">FM</div>
+            <div id="logo-name">Filmomat</div>
+            <div id="navigation">
+                <a href="#service">Service</a>
+                <a href="#documentations">Dokumentationen</a>
+                <a href="#contact">Kontakt</a>
+            </div>
+            <div id="image">
+                <img src="{{url_for('static',filename='images/image.jpg')}}" alt="Filmomat Bild">
+            </div>
+        </div>
+        <div id="MovieMatcher">
+            <center>
+                <div id="MovieMatcherTable">
+                    <table width='80%'>  
+                        <tr><td width="50%">
+                        {% if (layer >0) and movieA|length != 0 %}
+                        <p><center><h2>{{ movieA.title }}</h2></center></p>
+                        <p><center><img src="https://image.tmdb.org/t/p/w185/{{ movieA.poster_path }}"></center></img></p>
+                        <p><center>Genre:
+                            {% for i in range(0, movieGenreA|length): %}
+                            {{movieGenreA[i]}}{% if i != movieGenreA|length-1 %},{% endif %}               
+                            {% endfor %}
+                        </center></p>
+                        <p><center>Cast:
+                            {% for i in range(0, movieCastA|length): %}
+                            {{movieCastA[i]}}{% if i != movieCastA|length-1 %},{% endif %}             
+                            {% endfor %}
+                        </center></p>
+                        <p><center>Company:
+                            {% for i in range(0, movieCompanyA|length): %}
+                            {{movieCompanyA[i]}}{% if i != movieCompanyA|length-1 %},{% endif %}
+                            {% endfor %}
+                        </center></p>
+                        {% endif %}
+                        </td>
+                        <td width="50%">
+                        {% if (layer >0) and movieB|length != 0 %}
+                        <p><center><h2>{{ movieB.title }}</h2></center></p>
+                        <p><center><img src="https://image.tmdb.org/t/p/w185/{{ movieB.poster_path }}"></img></center></p>
+                        <p><center>Genre:
+                            {% for i in range(0, movieGenreB|length): %}
+                            {{movieGenreB[i]}}{% if i != movieGenreB|length-1 %},{% endif %} 
+                            {% endfor %}
+                        </center></p>
+                        <p><center>Cast:
+                            {% for i in range(0, movieCastB|length): %}
+                            {{movieCastB[i]}}{% if i != movieCastB|length-1 %},{% endif %} 
+                            {% endfor %}
+                        </center></p>
+                        <p><center>Company:
+                            {% for i in range(0, movieCompanyB|length): %}
+                            {{movieCompanyB[i]}}{% if i != movieCompanyB|length-1 %},{% endif %} 
+                            {% endfor %}
+                        </center></p>
+                        {% endif %}
+                        </td>
+                        </tr><!-- ROW A-->
+                        <section id="ROW_A"> 
+                        <form action = "/#ROW_D" method="post"><tr><td>
+                            <p><center>Enter Movie Name:</center></p>
+                            <p><center><input type = "text" name='seachmovienameA'></center></p></td>
+                            <td>
+                                <p><center>Enter Movie Name:</center></p>
+                                <p><center><input type = "text" name='seachmovienameB'></center></p></td></tr><!-- ROW B--> 
+                                <tr><td colspan="2"><p><input type = "hidden" name='mode' value="0"></p>
+                                    <p> <center> <input type = "submit" value = "submit"></center></p>
+                                    </form></td></tr><!-- ROW C-->
+                                </section>
+                                <section id="ROW_D">
+                                {% if layer == 1 %}
+                                <tr><td><ul>
+                                {% for i in range(0, ListlenA): %}
+                                <li><a href="/A/{{ moviesIDA[i] }}#ROW_A">{{ moviesListA[i] }}</a></li>
+                                {% endfor %}
+                            </ul></td><td><ul>
+                                {% for i in range(0, ListlenB): %}
+                                <li><a href="/B/{{ moviesIDB[i] }}#ROW_A">{{ moviesListB[i] }}</a></li>
+                                {% endfor %}
+                                {% endif %}
+                            </ul></td></tr> <!-- ROW D-->
+                        </section>
+                        <section id="ROW_E">
+                            <tr><td colspan="2">
+                                {% if layer == 2 and movieA|length != 0 and movieB|length != 0 %}
+                                <p><center>Please wait....</center></p>
+                                {% endif %}
+                                {% if layer == 3 and movieC|length != 0 %}
+                                <p><center><h2>{{ movieC.title }}</h2></center></p>
+                                <p><center><img src="https://image.tmdb.org/t/p/w185/{{ movieC.poster_path }}"></center></img></p>
+                                <p><center>Genre:
+                                    {% for i in range(0, movieGenreC|length): %}
+                                    {{movieGenreC[i]}}{% if i != movieGenreC|length-1 %},{% endif %}               
+                                    {% endfor %}
+                                </center></p>
+                                <p><center>Cast:
+                                    {% for i in range(0, movieCastC|length): %}
+                                    {{movieCastC[i]}}{% if i != movieCastC|length-1 %},{% endif %}             
+                                    {% endfor %}
+                                </center></p>
+                                <p><center>Company:
+                                    {% for i in range(0, movieCompanyC|length): %}
+                                    {{movieCompanyC[i]}}{% if i != movieCompanyC|length-1 %},{% endif %}
+                                    {% endfor %}
+                                </center></p>
+                                {% endif %}
+                            </td></tr> <!-- ROW E-->
+                        </section>
+                            <p></p>
+                </table>
+                </div>
+            </center>
+        </div>
+        <div id="main">
+            <section id="service">
+                <h2>Service</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </section>
+            <section id="documentations">
+                <h2>Dokumentationen</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </section>
+            <section id="contact">
+                <h2>Kontakt</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </section>
+        </div>
+        <div id="footer">
+            Copyright 2022 | Filmomat
+        </div>
+    </body>
+</html>
